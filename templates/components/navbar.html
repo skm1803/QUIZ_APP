@@ -1,0 +1,51 @@
+<style>
+body {
+  margin-top: 105px; }
+
+.navbar {
+  box-shadow: 2px 2px 5px #3292a6;
+  opacity: 0.9;
+  background: #fff; }
+  .navbar .nav-item {
+    font-size: 1.4rem;
+    padding-right: 1.4rem; }
+  </style>
+<link href='https://fonts.googleapis.com/css?family=Merienda One' rel='stylesheet'>
+<style>
+.navbar {
+    font-family: 'Merienda One';font-size: 16px;
+
+}
+</style>
+
+
+{% load static %}
+<nav class="navbar navbar-expand-md navbar-light fixed-top py-4" id="main-nav">
+    <div class="container">
+      <a href="/" class="navbar-brand">
+        <img src="{% static 'logo.png' %}" width="50" height="50" alt="">
+        <h3 class="d-inline align-middle">{{brand_name}}</h3>
+      </a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          {% include 'components/searchform.html' %}
+          <li class="nav-item">
+            <a href="/list/" class="nav-link">All-Quiz</a>
+          </li>
+          <li class="nav-item">
+            <a href="#newsletter" class="nav-link">About</a>
+          </li>
+
+          
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">Contact</a>
+          </li>
+        {% include 'components/user_button.html' %}
+
+        </ul>
+      </div>
+    </div>
+  </nav>

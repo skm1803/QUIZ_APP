@@ -1,0 +1,167 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>QuickQuiz</title>
+
+
+<link rel="stylesheet" href="{% static 'mycs/home.css' %}">
+
+<link rel = "icon" href =
+"{% static 'logo.png' %}"
+        type = "image/x-icon">
+
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="row">
+      <div class="col-lg-12">
+        {% include 'components/snippets/messages.html' %}
+      </div>
+    </div>
+    
+   
+    <section id="showcase" class="py-5">
+      <img src="{% static 's.jpg' %}">
+    <div class="primary-overlay text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 text-center">
+            <h1 class="display-4 mt-5 pt-5">
+              Ignite the fire of a quizzer in the heart of children...
+            </h1>
+            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, tempora!</p>
+            <a href="#" class="btn btn-outline-secondary btn-lg text-white">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            Read More
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <img src="img/book.png" alt="" class="img-fluid d-none d-lg-block">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="newsletter" class="bg-dark text-white py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <input type="text" class="form-control form-control-lg mb-resp" placeholder="Enter Name">
+        </div>
+        <div class="col-md-4">
+          <input type="email" class="form-control form-control-lg mb-resp" placeholder="Enter Email">
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-primary btn-lg btn-block" style="background: #3292a6; border: #3292a6;">
+            <i class="fa fa-envelope-open-o" aria-hidden="true"></i> Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="boxes" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card text-center  mb-resp" style="border-color:#3292a6;">
+            <div class="card-body">
+              <h3  style="color:#3292a6; ">Be Better</h3>
+              <p class="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet, deserunt.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center text-white mb-resp " style="background:#3292a6; border: #3292a6;">
+            <div class="card-body">
+              <h3>Be Smarter</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet, deserunt.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center mb-resp" style="border-color:#3292a6;">
+            <div class="card-body">
+              <h3  style="color:#3292a6;">Be Faster</h3>
+              <p class="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet, deserunt.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center text-white mb-resp " style="background:#3292a6; border: #3292a6;">
+            <div class="card-body">
+              <h3>Be Stronger</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet, deserunt.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section id="about" class="py-5 text-center bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="info-header mb-5">
+            <h1 class="pb-3" style="color: #3292a6">
+              Why This Book?
+            </h1>
+            <p class="lead pb-3">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus obcaecati alias rerum dolore fugiat debitis?
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="contact" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+          <h3>Get In Touch</h3>
+          <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, temporibus!</p>
+          <form>
+            <div class="input-group input-group-lg mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" placeholder="Name">
+            </div>
+
+            <div class="input-group input-group-lg mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-envelope"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" placeholder="Email">
+            </div>
+
+            <div class="input-group input-group-lg mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </span>
+              </div>
+              <textarea class="form-control" placeholder="Message" rows="5"></textarea>
+            </div>
+
+            <input type="submit" value="Submit" class="btn btn-block btn-lg text-white" style="background:#3292a6">
+          </form>
+        </div>
+
+        <div class="col-lg-3 align-self-center">
+          <img src="{% static 'logo.png' %}" alt="" class="img-fluid" >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+{% endblock %}

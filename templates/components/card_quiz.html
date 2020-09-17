@@ -1,0 +1,12 @@
+{% load static %}
+
+
+<div class="card shadow-sm p-3  my-5 bg-white rounded" style="width: 14rem;">
+  <div class="card-body">
+    <a href="{{obj.get_absolute_url}}"><h5 class="card-title" style="color: #3292a6">Title: {{obj.title}}</h5></a>
+    <p class="card-text"><strong >Description:</strong><span class="lead"> Here is some sample description of this quiz.</span></p>
+    <p class="card-text"><strong>Subject:</strong> <span class="lead">{{obj.get_subject_display}}</span></p>
+    <p class="card-text"><strong>No. of Ques.</strong>: <span class="lead">{{obj.questions.count}}</span></p>
+    <a href="{{obj.get_absolute_url}}" class="btn btn-block text-light" style="background:#3292a6">Jump to Quiz</a>
+  </div>
+</div>

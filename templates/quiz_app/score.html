@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>All Quiz</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <p class="lead">Your Score : {{score}}</p>
+    <p class="lead">Total : {{total}}</p>
+    <p class="lead">Result : {{success_msg|safe}}</p>
+
+    <p class="lead" style="color: brown">Time Taken: {{analysis.get_time_difference}}</p>
+
+    <div style="width: 800px; height: 400px">
+      <canvas id="myChart" ></canvas>
+    </div>
+    <hr>
+
+    {% for obj in stored_answer %}
+    <strong>Question </strong>{{obj.question.question|safe}}
+    <strong>Correct Answer </strong>{{obj.correct_answer}}
+    <br>
+    <strong>Your Answer </strong>{{obj.student_answered}}
+    <br><br><hr>
+    {% endfor %}
+
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script type="text/javascript">
+      var ctx = document.getElementById('myChart').getContext('2d');
+  var total = "{{total}}"
+  var score = "{{score}}"
+  var unscore = total - score;
+  var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Score','Not Scored'],
+        datasets: [{
+            label: '# of Votes',
+            data: [score,unscore],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+   
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<title>All Quiz</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="row my-5">
+      {% for obj in object_list %}
+      <div class="col">
+        {% include 'components/card_quiz.html' with obj=obj %}
+      </div>
+      {% if forloop.counter|divisibleby:4 %}
+      </div><div class="row">
+      {% endif %}
+      {% endfor %}
+    
+    </div>
+
+</div>
+{% endblock %}

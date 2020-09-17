@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>{{quiz_object.title}}</title>
+
+<link rel="stylesheet" href="{% static 'mycs/start_quiz.css' %}">
+
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <h1 class="display-4 mt-3">{{quiz_object.title}}<hr class="hr_" style="background: #3292a6; " ></h1>
+    <div class="row">
+      
+      <div class="col-12">
+
+            {% if msg %}
+            <p class="lead" style="color: brown">{{msg}}</p>
+            <br>
+            {% endif %}
+
+            <div id="alert-msg">
+            
+            </div>
+
+        <div class="shadow-none p-3 mt-5 text-white rounded" style="background:#3292a6;">
+          <strong>
+          Question {{next_question|add:"-1"}}</strong>
+        </div>
+
+                <div class="shadow-lg p-3 mb-5 rounded">
+                  
+                  {{question_object.question|safe}}
+                  {% for obj in answer_object %}
+                  <span id="{{obj.id}}">
+                    <label><input type="radio" id="{{obj.id}}" name="answer-option" value="{{obj.answer}}">{{obj.answer}}
+                    </label>
+                  </span>
+                  <br>
+                  {% endfor %}
+
+                </div>
+        </div>
+      </div>
+
+
+    <div class="id-spinner"></div>
+    <button id="submit-answer" class="btn btn-primary mr-2" onclick="checkAnswer()" style="background: #3292a6;">Save</button>
+
+    <a href="{% url 'start_quiz' quiz_object.slug next_question %}">
+      <button class="btn btn-primary mr-2" style="background: #3292a6;">Next Question</button>
+    </a>
+
+    <a href="{% url 'submit' quiz_object.slug  %}">
+      <button class="btn btn-outline-danger mr-2">End Quiz</button>
+    </a>
+
+    <div class="row my-5"></div>
+
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script type="text/javascript">
+  $( document ).ready(function() {
+    console.log( "ready!" );
+    $('.alert').hide(); 
+});
+  function checkAnswer(){
+    console.log("clicked btn");
+    let question_number = "{{next_question|add:"-2"}}"
+    console.log(question_number);
+    let answer_chosen = $("input[name='answer-option']:checked").val();
+
+    if (answer_chosen === undefined){
+       document.getElementById("alert-msg").innerHTML +=
+       `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        Please select an option.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>`
+    }
+    if (answer_chosen !== undefined)
+      checkIfCorrect(question_number,answer_chosen);
+  }
+
+
+ function checkIfCorrect(question_number,answer_chosen){
+
+    console.log("here ques",question_number);
+    chosen_answer_id = $("input[name='answer-option']:checked").attr('id');
+    console.log(chosen_answer_id);
+    var token = "{{csrf_token}}";
+    $.ajax({
+            type: "POST",
+            headers: { "X-CSRFToken": token },
+            url: "/check-correct/{{quiz_object.slug}}/" + question_number +"/",
+            data: { 'answer_chosen':answer_chosen,'chosen_answer_id':chosen_answer_id },
+
+            success: function (data) {
+
+              console.log(data);
+              let wrongSpan = $(`#${data.chosen_answer}`);
+              console.log(wrongSpan)
+              wrongSpan.addClass('wrong');
+              let rightSpan = $(`#${data.right_answer}`);
+              console.log(rightSpan)
+              rightSpan.addClass('right-ans');
+
+              },
+            error: function (data) {
+              console.log("error");
+            },
+          });
+ }
+</script>
+{% endblock %}

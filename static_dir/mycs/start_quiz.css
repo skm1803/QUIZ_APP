@@ -1,0 +1,14 @@
+  .wrong{
+    border:2px solid red;
+}
+
+  .right-ans{
+    background-color: #8ceda6;
+    border:2px solid green;
+}
+
+  .hr_ {
+  box-shadow: 2px 2px 5px #3292a6;
+  opacity: 0.9;
+  background: #fff; 
+}
